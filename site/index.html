@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b0b">
+  <meta name="description" content="Cunoaște echipa FTC și explorează robotul 3D.">
+  <title>Echipa FTC · Idei în mișcare</title>
+  <script>
+    const openingPage = new URLSearchParams(location.search).get('pagina');
+    document.documentElement.dataset.page = ['robot', 'echipa'].includes(openingPage) ? openingPage : 'home';
+  </script>
+  <link rel="icon" href="./mark.svg" type="image/svg+xml">
+  <link rel="preload" href="./fonts/SpaceGrotesk.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./team.css">
+  <link rel="stylesheet" href="./robot-detail.css">
+  <link rel="stylesheet" href="./club.css">
+  <link rel="stylesheet" href="./studio.css">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.min.js","three/addons/":"./vendor/addons/"}}</script>
+  <script type="module" src="./language.js"></script>
+  <script type="module" src="./pages.js"></script>
+  <script type="module" src="./robot-detail.js"></script>
+  <script type="module" src="./club.js"></script>
+  <script type="module" src="./app.js"></script>
+</head>
+<body>
+  <a class="skip-link" href="?pagina=echipa">Sari la echipă</a>
+  <div class="scroll-progress" aria-hidden="true"></div>
+  <header class="header">
+    <a class="brand" href="./#top" aria-label="Echipa FTC, început">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 6h28v28H6zM13 27V13h14M13 20h11" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="28" cy="28" r="2" fill="currentColor"/></svg>
+      <span>FTC<span class="brand-sub">ROBOTICS TEAM</span></span>
+    </a>
+    <nav class="nav" aria-label="Navigare principală">
+      <a href="?pagina=robot">Robotul</a><a href="?pagina=echipa">Echipa</a><a href="./#sezon">Sezon</a>
+    </nav>
+    <div class="header-tools">
+    <button class="motion-toggle" aria-pressed="false" title="Pauză pentru animațiile automate"><span class="motion-icon" aria-hidden="true">Ⅱ</span><span class="motion-label">Pauză animații</span></button>
+    <button type="button" id="language-toggle" lang="en" aria-label="Switch to English">EN</button>
+    <details class="site-menu">
+      <summary><span class="menu-lines" aria-hidden="true"></span><span>Meniu</span></summary>
+      <nav class="section-menu" aria-label="Secțiunile site-ului">
+        <a href="?pagina=robot">Robotul</a><a href="?pagina=echipa">Echipa</a><a href="./#atelier">Din atelier</a><a href="./#sezon">Sezon</a><a href="./#jurnal">Jurnal</a><a href="./#parteneri">Parteneriate</a><a href="./#contact">Contact</a>
+      </nav>
+    </details>
+    </div>
+  </header>
+
+  <main>
+    <section class="robot-journey" id="top" aria-label="Explorează robotul 3D">
+      <div class="scene-sticky" id="robot">
+        <div class="scene-grid" aria-hidden="true"></div>
+        <div class="scene-glow" aria-hidden="true"></div>
+        <div id="robot-canvas" class="robot-canvas" role="img" aria-label="Robot FTC în 3D">
+          <div class="scene-loading"><span></span>Se încarcă robotul…</div>
+        </div>
+        <div class="hero-copy story-panel" data-panel="hero">
+          <p class="eyebrow"><span class="tiny-cross">+</span> FIRST TECH CHALLENGE</p>
+          <h1><span class="line"><span>Din idee.</span></span><span class="line"><span class="lime">În mișcare.</span></span></h1>
+          <div class="hero-links"><a class="pill-button magnetic" href="?pagina=robot">Explorează piesele</a><a href="?pagina=echipa" class="hero-team-link">Cunoaște echipa</a></div>
+        </div>
+        <div class="engineering-copy story-panel" data-panel="engineering" aria-hidden="true">
+          <h2>Sub <span class="lime">carcasă.</span></h2>
+        </div>
+        <div class="scene-meta"><a class="robot-explorer-button" href="?pagina=robot">Explorează piesele</a></div>
+        <section class="component-studio" aria-labelledby="studio-title">
+          <a class="studio-home" href="./#top">Acasă</a>
+          <div class="component-sheet">
+            <h1 id="studio-title" tabindex="-1"></h1>
+            <strong class="part-spec"></strong>
+            <p class="part-description"></p>
+          </div>
+          <nav class="part-selector" aria-label="Componentele robotului"></nav>
+          <button type="button" class="part-replay" disabled><i aria-hidden="true">↻</i><span>Repetă animația</span></button>
+          <details class="part-build-notes"><summary class="part-stage"></summary><p class="part-build"></p></details>
+        </section>
+        <div class="robot-annotations" aria-hidden="true"><span class="annotation annotation-lift">MECANISM DE RIDICARE</span><span class="annotation annotation-control">ELECTRONICĂ & CONTROL</span><span class="annotation annotation-drive">ROȚI MECANUM</span></div>
+        <div class="scene-bottom">
+          <div class="scroll-hint" aria-hidden="true"><span class="scroll-track"><i></i></span></div>
+          <div class="robot-toolbar" role="group" aria-label="Comenzi robot 3D">
+            <button id="robot-explode" aria-pressed="false"><span class="control-glyph">⊞</span><span>Descompune</span></button>
+            <button id="robot-wire" aria-pressed="false"><span class="control-glyph">◇</span><span>Structură</span></button>
+            <button id="robot-run" aria-pressed="false"><span class="control-glyph">▷</span><span>Mecanisme</span></button>
+            <button id="robot-reset"><span class="control-glyph">◎</span><span>Reset</span></button>
+          </div>
+          <div class="view-controls" role="group" aria-label="Perspectivă robot"><button id="rotate-left" aria-label="Rotește robotul spre stânga">−15°</button><button id="rotate-right" aria-label="Rotește robotul spre dreapta">+15°</button><button id="zoom-in" aria-label="Mărește robotul">+</button><button id="zoom-out" aria-label="Micșorează robotul">−</button></div>
+        </div>
+        <div class="scene-fallback" hidden><strong>Robotul 3D nu este disponibil în acest browser.</strong></div>
+      </div>
+    </section>
+
+
+    <section class="team-section" id="echipa">
+      <div class="team-heading section-pad">
+        <div class="reveal"><a class="studio-home team-home" href="./#top">Acasă</a><h2 id="team-title" tabindex="-1">Echipa <span>(15)</span></h2></div>
+        <div class="team-intro reveal"><p>Apasă pe un ecuson pentru profil.</p></div>
+      </div>
+      <div class="badge-theatre">
+        <div id="badge-canvas" class="badge-canvas" aria-label="Ecusoane suspendate 3D. Trage un ecuson pentru balans sau selectează un membru și folosește butoanele de mai jos.">
+          <div class="badge-loading">Se pregătesc ecusoanele…</div>
+        </div>
+        <div id="badge-fallback" class="badge-fallback" hidden></div>
+        <div class="badge-controls"><button id="badge-prev" aria-label="Grupul anterior de ecusoane">Anterior</button><span id="badge-range" aria-live="polite">01 — 03 / 15</span><button id="badge-next" aria-label="Următorul grup de ecusoane">Următorul</button></div>
+        <div class="badge-actions" role="group" aria-label="Animația ecusonului selectat"><button id="badge-swing">Balans</button><button id="badge-flip">Întoarce ecusonul</button><button id="badge-reset">Așază ecusoanele</button></div>
+      </div>
+      <div class="roster-strip section-pad"><span class="eyebrow dark-eyebrow">Alege un ecuson</span><div id="member-selector" class="member-selector" role="group" aria-label="Cei 15 membri"></div></div>
+    </section>
+
+    <section class="workshop section-pad" id="atelier">
+      <div class="workshop-heading reveal"><h2>Din atelier</h2></div>
+      <div class="process-list">
+        <article class="process-row reveal"><span class="process-symbol">⌕</span><h3>Întrebăm.</h3><p>Înțelegem provocarea. Ascultăm ideile. Alegem ce merită încercat.</p><div class="process-graphic search-graphic" aria-hidden="true"><i></i><i></i><i></i></div></article>
+        <article class="process-row reveal"><span class="process-symbol">◇</span><h3>Proiectăm.</h3><p>Din schițe și conversații apar soluții. Din soluții, primul prototip.</p><div class="process-graphic design-graphic" aria-hidden="true"><i></i><i></i><i></i></div></article>
+        <article class="process-row reveal"><span class="process-symbol">⌘</span><h3>Construim.</h3><p>Materialele, electronica și codul devin un singur mecanism.</p><div class="process-graphic build-graphic" aria-hidden="true"><i></i><i></i><i></i></div></article>
+        <article class="process-row reveal"><span class="process-symbol">∞</span><h3>Încercăm din nou.</h3><p>Testăm. Observăm. Ajustăm. Fiecare încercare ne duce mai departe.</p><div class="process-graphic repeat-graphic" aria-hidden="true"><i></i><i></i><i></i></div></article>
+      </div>
+    </section>
+
+    <div id="club-sections"></div>
+  </main>
+  <footer class="footer"><a href="./#top" class="footer-brand">FTC<span> / ROBOTICS TEAM</span></a><p>Un site independent de echipă. FIRST® și FTC® sunt mărci ale FIRST.</p><span>© <span id="year">2026</span></span></footer>
+</body>
+</html>

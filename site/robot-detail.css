@@ -1,0 +1,32 @@
+.scene-meta { z-index: 4; justify-content: flex-end; }
+.robot-explorer-button, .part-replay {
+  pointer-events: auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 42px;
+  padding: 8px 16px;
+  color: var(--lime);
+  border: 1px solid #667955;
+  background: #101811eb;
+  border-radius: 100px;
+  font: 500 14px/1.15 Space, sans-serif;
+  letter-spacing: 0;
+}
+.robot-explorer-button:hover, .part-replay:hover:enabled { border-color: var(--lime); background: #223020; }
+.part-replay { gap: 9px; }
+.part-replay i { font: 22px/1 sans-serif; }
+.part-selector { display: flex; flex-wrap: wrap; gap: 7px; margin: 22px 0 15px; }
+.part-selector button {
+  border: 1px solid #556258;
+  border-radius: 20px;
+  padding: 9px 13px;
+  background: #0d1511;
+  color: #d6e1d8;
+  font: 500 14px/1.2 Space, sans-serif;
+}
+.part-selector button:hover { border-color: var(--lime); }
+.part-selector button[aria-pressed="true"] { color: #122015; background: var(--lime); border-color: var(--lime); }
+.part-build-notes { margin-top: 20px; padding-top: 15px; border-top: 1px solid #39463d; }
+.part-build-notes summary { width: fit-content; cursor: pointer; font-size: 15px; }
+.part-build-notes p { color: #c1ccbf; line-height: 1.55; margin: 9px 0 0; font-size: 16px; }

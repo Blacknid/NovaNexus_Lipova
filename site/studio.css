@@ -1,0 +1,77 @@
+.component-studio, .team-home { display: none; }
+html[data-page="robot"] main > :not(.robot-journey),
+html[data-page="echipa"] main > :not(.team-section),
+html[data-page="robot"] .scene-sticky > :is(.story-panel,.robot-annotations,.scene-meta,.scene-bottom),
+html:not([data-page="home"]) .scroll-progress { display: none; }
+html:not([data-page="home"]) .header { background: #080e0bfa; border-color: #344237; }
+.header a[aria-current="page"] { color: var(--lime); }
+.studio-home { color: inherit; text-decoration: underline; text-decoration-color: #758475; text-underline-offset: 4px; font-size: 14px; }
+.studio-home:hover { text-decoration-color: currentColor; }
+html[data-page="robot"] .robot-journey { height: auto; }
+html[data-page="robot"] .scene-sticky {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  position: relative;
+  height: auto;
+  min-height: max(100svh, 610px);
+  padding: 112px clamp(26px, 4vw, 76px) 42px;
+  background: radial-gradient(ellipse at 33% 52%, #1b2a22, #0a100d 60%, #080d0b);
+}
+.scene-sticky .component-studio {
+  position: relative;
+  z-index: 3;
+  width: clamp(300px, 31vw, 450px);
+  padding: 0 0 0 clamp(16px, 1.8vw, 32px);
+  border-left: 1px solid #53665466;
+}
+html[data-page="robot"] .component-studio { display: block; }
+.component-studio > .studio-home { color: #b3c4b6; }
+.component-sheet { margin-top: clamp(20px, 3vh, 34px); }
+.component-sheet h1 {
+  margin: 0 0 13px;
+  font-size: clamp(40px,4.9vw,82px);
+  font-weight: 550;
+  line-height: .99;
+  letter-spacing: -.065em;
+  overflow-wrap: anywhere;
+}
+.component-sheet h1:focus, #team-title:focus { outline: none; }
+.part-spec { font-size: 16px; color: var(--lime); font-weight: 500; }
+.part-description { color: #c1ccbf; max-width: 38ch; font-size: 16px; line-height: 1.6; margin: 12px 0 0; }
+html[data-page="robot"] .scene-fallback { left: 5%; top: 40%; width: 45%; }
+html[data-page="echipa"] .team-section { padding-top: 88px; min-height: 100svh; }
+html[data-page="echipa"] .team-heading { padding-top: clamp(23px,3.5vw,55px); padding-bottom: 20px; }
+html[data-page="echipa"] .team-heading h2 { font-size: clamp(44px,5vw,76px); }
+html[data-page="echipa"] .team-heading .reveal { opacity: 1; transform: none; }
+html[data-page="echipa"] .team-home { display: inline-block; margin-bottom: 14px; }
+html[data-page="echipa"] .team-intro p { margin: 0; }
+html[data-page="echipa"] .badge-theatre { border-radius: 12px; overflow: hidden; min-height: 0; }
+html[data-page="echipa"] .badge-canvas { height: clamp(350px,54svh,620px); }
+html[data-page="echipa"] .roster-strip { padding-top: 22px; padding-bottom: 34px; }
+@media (min-width: 761px) {
+  html[data-page="robot"] #robot-canvas {
+    --panel-edge: calc(100% - clamp(300px, 31vw, 450px) - clamp(26px, 4vw, 76px));
+    mask-image: linear-gradient(to right, #000 calc(var(--panel-edge) - 70px), transparent var(--panel-edge));
+  }
+}
+@media (max-width:760px) {
+  html[data-page="robot"] .scene-sticky {
+    display: block; min-height: 100svh; padding: 72px 0 26px;
+    background: radial-gradient(ellipse at 50% 25%, #1a2a21, #0a100d 60%);
+  }
+  html[data-page="robot"] #robot-canvas { position: relative; inset: auto; height: clamp(285px,44svh,500px); }
+  html[data-page="robot"] .component-studio {
+    width: auto; margin: 0 22px; padding: 15px 0 0; border: 0; border-top: 1px solid #435547;
+  }
+  .component-sheet { margin-top: 12px; }
+  .component-sheet h1 { margin-bottom: 8px; font-size: clamp(39px,9vw,60px); }
+  .part-description { margin-top: 8px; max-width: 52ch; }
+  .part-selector { margin: 16px 0 12px; }
+  html[data-page="robot"] .scene-fallback { left: 10%; top: 20%; width: 80%; }
+  html[data-page="echipa"] .team-section { padding-top: 72px; }
+  html[data-page="echipa"] .team-heading { padding-top: 20px; }
+  html[data-page="echipa"] .team-intro { margin-top: 8px; padding-bottom: 0; }
+  html[data-page="echipa"] .team-intro p { max-width: none; }
+  html[data-page="echipa"] .badge-canvas { height: clamp(335px,49svh,500px); }
+}

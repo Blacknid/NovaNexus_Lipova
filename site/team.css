@@ -1,0 +1,165 @@
+.badge-actions {
+  flex-wrap: wrap;
+}
+.badge-actions .member-launch {
+  background: #203226;
+  border-color: #203226;
+  color: #f3f8ec;
+  font-weight: 600;
+}
+.team-section [hidden] {
+  display: none !important;
+}
+html:has(.member-profile[open]) {
+  overflow: hidden;
+  scrollbar-gutter: stable;
+}
+.member-profile {
+  width: min(410px, calc(100% - 32px));
+  max-height: 92dvh;
+  margin: auto;
+  padding: 0;
+  overflow: auto;
+  border: 0;
+  border-radius: 12px;
+  color: #203226;
+  background: #f3f4ec;
+  box-shadow: 0 25px 80px #07100d66;
+}
+.member-profile::backdrop {
+  background: #091610b8;
+  backdrop-filter: blur(4px);
+}
+.member-profile-inner {
+  position: relative;
+  padding: 18px 18px 24px;
+}
+.member-close {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  min-width: 42px;
+  width: auto;
+  padding: 0 15px;
+  height: 42px;
+  border: 1px solid #17251c66;
+  border-radius: 99px;
+  background: #f6f7ee;
+  color: #17251c;
+  font-size: 14px;
+  line-height: 1;
+}
+.member-stage { display: none; }
+.member-profile:not(.live-badge)[open] .member-profile-inner {
+  transform-origin: 50% 5%;
+  animation: member-settle .48s cubic-bezier(.18,.8,.27,1) both;
+}
+@keyframes member-settle {
+  from { opacity: 0; transform: perspective(850px) translateY(-24px) rotateX(-12deg) rotateY(-33deg); }
+  to { opacity: 1; transform: none; }
+}
+.member-profile.live-badge {
+  position: fixed; inset: 0; width: 100vw; height: 100dvh;
+  max-width: none; max-height: none; padding: 0; margin: 0;
+  border-radius: 0; border: 0; background: transparent; box-shadow: none; overflow: hidden;
+}
+.member-profile.live-badge::backdrop { background: transparent; backdrop-filter: none; }
+.live-badge .member-stage { display: block; position: absolute; inset: 0; overflow: hidden; background: #e7ebe5; }
+.member-stage canvas { display: block; width: 100%; height: 100%; touch-action: none; }
+.badge-canvas canvas { touch-action: pan-y; }
+html[data-page="echipa"] .badge-canvas canvas { touch-action: none; }
+.live-badge .member-profile-inner {
+  position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%);
+}
+.member-profile[open] .member-close { z-index: 2; }
+.live-badge .member-close {
+  top: max(18px,env(safe-area-inset-top)); right: max(20px,env(safe-area-inset-right));
+  opacity: var(--close-opacity,0); color: #16251c; background: #f1f3eaf2;
+}
+.live-badge .member-instagram {
+  position: absolute; z-index: 1; transform: translate(-50%,-50%); margin: 0; padding: 0 10px;
+  justify-content: center; border: 1px solid #e7f4b0; border-radius: 9px;
+  background: #ddfa91; color: #172413; font-size: clamp(13px,2.8vmin,18px); font-weight: 650;
+  min-height: 0; white-space: nowrap;
+}
+.live-badge[data-readable="false"] .member-instagram { visibility: hidden; opacity: 0; }
+.live-badge[data-readable="true"] .member-instagram { visibility: visible; opacity: 1; transition: opacity .17s; }
+html[data-motion="paused"] .member-profile *, html[data-motion="paused"] .member-profile::backdrop { animation: none !important; transition: none !important; }
+.member-identity, .member-flat-symbol {
+  display: grid;
+  place-items: center;
+  color: #203226;
+  background-color: var(--member-color);
+  background-image: linear-gradient(#24372314 1px, transparent 1px), linear-gradient(90deg, #24372314 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+.member-identity {
+  aspect-ratio: 2 / 1;
+  border-radius: 7px;
+}
+.member-monogram {
+  font-weight: 600;
+  font-size: clamp(52px, 10vw, 94px);
+  letter-spacing: -.08em;
+  line-height: 1;
+}
+.member-number {
+  font: 600 12px/1.4 monospace;
+  text-transform: uppercase;
+  letter-spacing: .12em;
+  color: #53634f;
+  margin: 23px 4px 6px;
+}
+.member-handle {
+  margin: 0 4px 25px;
+  font-size: clamp(23px, 6vw, 32px);
+  line-height: 1.2;
+  letter-spacing: -.05em;
+  overflow-wrap: anywhere;
+}
+.member-instagram {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  margin-left: 4px;
+  padding: 0 18px;
+  color: #ebf3dc;
+  background: #203226;
+  border-radius: 100px;
+  font-size: 15px;
+  text-decoration: none;
+}
+.member-instagram:hover, .member-launch:hover {
+  filter: brightness(1.18);
+}
+.member-profile :focus-visible, .member-flat:focus-visible {
+  outline: 3px solid #4b7132;
+  outline-offset: 2px;
+}
+.member-flat {
+  display: grid;
+  gap: 14px;
+  padding: 12px 12px 17px;
+  border: 1px solid #a9b6a2;
+  border-radius: 6px;
+  background: #f3f4ec;
+  color: #203226;
+}
+.member-flat-symbol {
+  font-size: 36px;
+  font-weight: 600;
+  min-height: 76px;
+}
+.member-flat-name {
+  overflow-wrap: anywhere;
+}
+@media (max-width: 700px) {
+  .badge-fallback {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    padding-inline: 12px;
+  }
+  .member-flat-name {
+    font-size: 13px;
+  }
+}
